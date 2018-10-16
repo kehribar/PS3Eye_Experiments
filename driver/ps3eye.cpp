@@ -1229,7 +1229,7 @@ bool PS3EYECam::open_usb()
 	}
 
 	//libusb_set_configuration(handle_, 0);
-
+	libusb_detach_kernel_driver(handle_, 0);
 	res = libusb_claim_interface(handle_, 0);
 	if(res != 0) {
 		debug("device claim interface error: %d\n", res);

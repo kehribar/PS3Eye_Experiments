@@ -21,6 +21,10 @@ CXXFLAGS += -I. -std=c++11 -O3
 CXXFLAGS += $(shell pkg-config --cflags libusb-1.0)
 LIBS += $(shell pkg-config --libs libusb-1.0)
 
+ifeq ($(shell uname), Linux)
+	LIBS += -lpthread
+endif
+
 $(TARGET): $(OBJECTS)
 	$(CXX) -o $@ $^ $(LIBS)
 
